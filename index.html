@@ -189,39 +189,40 @@
             <iframe id="RecipeIFrame"></iframe>
         </section>
     </div>
+    <script type="text/javascript">
+        (function (window, document) {
+            var $RecipeOverlay = document.getElementById('RecipeOverlay');
+            var $RecipeIFrame = document.getElementById('RecipeIFrame');
+
+            window.addEventListener('hashchange', onHashChange);
+            onHashChange();
+
+            function onHashChange(event) {
+                var instant = (typeof event === 'undefined');
+                var name = window.location.hash.substr(1);
+                if (!name || name === 'index') {
+                    closeOverlay();
+                    return;
+                }
+                openOverlay(name, instant);
+            }
+
+            function openOverlay(name, instant) {
+                $RecipeIFrame.setAttribute('src', './recipes/' + name + '.html');
+                if (instant) {
+                    $RecipeOverlay.classList.add('instant');
+                }
+                $RecipeOverlay.classList.add('show');
+            }
+
+            function closeOverlay() {
+                $RecipeIFrame.setAttribute('src', 'about:blank');
+                $RecipeOverlay.classList.remove('show');
+                $RecipeOverlay.classList.remove('instant');
+            }
+        })(window, document);
+    </script>
+
 </body>
-<script type="text/javascript">
-    (function (window, document) {
-        var $RecipeOverlay = document.getElementById('RecipeOverlay');
-        var $RecipeIFrame = document.getElementById('RecipeIFrame');
-
-        window.addEventListener('hashchange', onHashChange);
-        onHashChange();
-
-        function onHashChange(event) {
-            var instant = (typeof event === 'undefined');
-            var name = window.location.hash.substr(1);
-            if (!name || name === 'index') {
-                closeOverlay();
-                return;
-            }
-            openOverlay(name, instant);
-        }
-
-        function openOverlay(name, instant) {
-            $RecipeIFrame.setAttribute('src', './recipes/' + name + '.html');
-            if (instant) {
-                $RecipeOverlay.classList.add('instant');
-            }
-            $RecipeOverlay.classList.add('show');
-        }
-
-        function closeOverlay() {
-            $RecipeIFrame.setAttribute('src', 'about:blank');
-            $RecipeOverlay.classList.remove('show');
-            $RecipeOverlay.classList.remove('instant');
-        }
-    })(window, document);
-</script>
 
 </html>
