@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bellroy's Cookbook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            font-family: 'Lato', 'Open Sans', Arial, sans-serif;
+            font-size: 14px;
+            color: #333;
+            background-color: #f5f5f5;
+            background-image: url('./assets/image/background.png');
+        }
+
+        * {
+            box-sizing: content-box;
+        }
+
+        .Recipes {
+            overflow: hidden;
+            overflow-y: auto;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 10px;
+            z-index: 1;
+        }
+
+        .RecipesInner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .RecipesInner {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .RecipesInner {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+        }
+
+        .Recipes a {
+            text-decoration: none;
+            height: calc(33vh - 10px);
+            min-height: 300px;
+            display: flex;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 300%;
+            background-color: #eee;
+            vertical-align: middle;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            filter: grayscale(90%);
+            font-size: 24px;
+            transition: filter .3s ease, font-size .3s ease, background-size .3s ease;
+        }
+
+        .Recipes a:hover {
+            filter: none;
+            font-size: 30px;
+            background-size: 140%;
+        }
+
+        .Recipes a span {
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        #RecipeOverlay {
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 100vw;
+            width: 100vw;
+            z-index: 2;
+            transition: left .3s ease;
+            background: #fff;
+
+        }
+
+        #RecipeOverlay.instant {
+            transition: none;
+        }
+
+        #RecipeOverlay.show {
+            left: 0;
+        }
+
+        #RecipeOverlay header {
+            background: #eee;
+            height: 60px;
+            padding: 0 40px;
+            line-height: 60px;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+
+        #RecipeOverlay header a {
+            text-decoration: none;
+            color: #111;
+        }
+
+        #RecipeOverlay section {
+            padding: 40px;
+        }
+
+        #RecipeOverlay iframe {
+            border: 0;
+            width: calc(100vw - 80px);
+            height: calc(100vh - 140px);
+        }
+
+
+        a[href="#aimee"] {
+            background-image: url('https://realfood.tesco.com/media/images/RFO-1400x919-classic-chocolate-mousse-69ef9c9c-5bfb-4750-80e1-31aafbd80821-0-1400x919.jpg');
+        }
+
+        a[href="#alex"] {
+            background-image: url('https://www.goodfood.com.au/content/dam/images/2/z/f/y/3/image.related.articleLeadwide.620x349.30ruf.png/1482124140806.jpg');
+        }
+
+        a[href="#chloe"] {
+            background-image: url('https://cdn.sallysbakingaddiction.com/wp-content/uploads/2013/09/pumpkin-cinnamon-rolls.jpg');
+        }
+
+        a[href="#eloise"] {
+            background-image: url('https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/user-collections/my-colelction-image/2015/12/recipe-image-legacy-id--198460_11.jpg');
+        }
+
+        a[href="#linh"] {
+            background-image: url('https://image.shutterstock.com/image-photo/close-view-chicken-nacho-tortilla-260nw-1030355497.jpg');
+        }
+
+        a[href="#sami"] {
+            background-image: url('./recipes/sami.jpg');
+        }
+
+        a[href="#sharni"] {
+            background-image: url('https://www.thechunkychef.com/wp-content/uploads/2016/09/One-Pot-Chicken-and-Dirty-Rice-8.jpg');
+        }
+
+        a[href="#sophie"] {
+            background-image: url('https://food.fnr.sndimg.com/content/dam/images/food/fullset/2013/10/4/3/FNM_110110-Basic-Stuffing-Recipe_s4x3.jpg.rend.hgtvcom.826.620.suffix/1383789291811.jpeg');
+        }
+    </style>
+</head>
+
+<body>
+    <section class="Recipes">
+        <div class="RecipesInner">
+            <a href="#aimee"><span>Aimee</span></a>
+            <a href="#alex"><span>Alex</span></a>
+            <a href="#chloe"><span>Chloe</span></a>
+            <a href="#eloise"><span>Eloise</span></a>
+            <a href="#linh"><span>Linh</span></a>
+            <a href="#sami"><span>Sami</span></a>
+            <a href="#sharni"><span>Sharni</span></a>
+            <a href="#sophie"><span>Sophie</span></a>
+        </div>
+    </section>
+    <div id="RecipeOverlay">
+        <header>
+            <a href="">Back to overview</a>
+        </header>
+        <section>
+            <iframe id="RecipeIFrame"></iframe>
+        </section>
+    </div>
+</body>
+<script type="text/javascript">
+    (function (window, document) {
+        var $RecipeOverlay = document.getElementById('RecipeOverlay');
+        var $RecipeIFrame = document.getElementById('RecipeIFrame');
+
+        window.addEventListener('hashchange', onHashChange);
+        onHashChange();
+
+        function onHashChange(event) {
+            var instant = (typeof event === 'undefined');
+            var name = window.location.hash.substr(1);
+            if (!name || name === 'index') {
+                closeOverlay();
+                return;
+            }
+            openOverlay(name, instant);
+        }
+
+        function openOverlay(name, instant) {
+            $RecipeIFrame.setAttribute('src', './recipes/' + name + '.html');
+            if (instant) {
+                $RecipeOverlay.classList.add('instant');
+            }
+            $RecipeOverlay.classList.add('show');
+        }
+
+        function closeOverlay() {
+            $RecipeIFrame.setAttribute('src', 'about:blank');
+            $RecipeOverlay.classList.remove('show');
+            $RecipeOverlay.classList.remove('instant');
+        }
+    })(window, document);
+</script>
+
+</html>
