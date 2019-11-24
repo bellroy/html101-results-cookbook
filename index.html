@@ -41,26 +41,26 @@
 
         .RecipesInner {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
             grid-gap: 10px;
         }
 
         @media (min-width: 768px) {
             .RecipesInner {
-                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-columns: repeat(4, 1fr)
             }
         }
 
         @media (min-width: 1400px) {
             .RecipesInner {
-                grid-template-columns: 1fr 1fr 1fr 1fr;
+                grid-template-columns: repeat(5, 1fr);
             }
         }
 
         .Recipes a {
             text-decoration: none;
             height: calc(33vh - 10px);
-            min-height: 300px;
+            min-height: 240px;
             display: flex;
             background-repeat: no-repeat;
             background-position: center center;
@@ -173,6 +173,26 @@
         a[href="#sophie"] {
             background-image: url('https://food.fnr.sndimg.com/content/dam/images/food/fullset/2013/10/4/3/FNM_110110-Basic-Stuffing-Recipe_s4x3.jpg.rend.hgtvcom.826.620.suffix/1383789291811.jpeg');
         }
+
+        a[href="#miyo"] {
+            background-image: url('https://cdn.jamieoliver.com/home/wp-content/uploads/2014/03/sconesheader630x420.jpg');
+        }
+
+        a[href="#nat"] {
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6pAFOEO4yXDPj3ByjsqDDnzj4-LwtwjR6TNbhGF_djkY7rKw4&s');
+        }
+
+        a[href="#mahala"] {
+            background-image: url('https://www.rachelkhoo.com/wp-content/uploads/2015/03/Rachel-Khoo-Austrian-beef-ribs-recipe.jpg');
+        }
+
+        a[href="#rich"] {
+            background-image: url('http://eatwellenjoylife.com/wp-content/uploads/2017/02/3-ingredient-pancake-stack-1-copy.jpg');
+        }
+
+        a[href="#ruby"] {
+            background-image: url('https://img.kidspot.com.au/dA89Y_yN/w643-h428-cfill-q90/kk/2018/09/coconut-anzac-biscuits-507365-1.jpg');
+        }
     </style>
 </head>
 
@@ -184,7 +204,12 @@
             <a href="#chloe"><span>Chloe</span></a>
             <a href="#eloise"><span>Eloise</span></a>
             <a href="#linh"><span>Linh</span></a>
+            <a href="#mahala"><span>Mahala</span></a>
+            <a href="#miyo"><span>Miyo</span></a>
             <a href="#nadia"><span>Nadia</span></a>
+            <a href="#nat"><span>Nat</span></a>
+            <a href="#rich"><span>Rich</span></a>
+            <a href="#ruby"><span>Ruby</span></a>
             <a href="#sami"><span>Sami</span></a>
             <a href="#sarah"><span>Sarah</span></a>
             <a href="#sharni"><span>Sharni</span></a>
